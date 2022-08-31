@@ -334,6 +334,19 @@ a:hover {
     z-index: 1;
     justify-content: center;
   }
+  .thanks-box {
+    margin-right: 0;
+  }
+  .thanks-bg i:nth-of-type(1) {
+    left: 50%;
+    transform: translateX(-50%);
+    margin-left: -5px;
+  }
+  .thanks-bg i:nth-of-type(2),
+  .thanks-bg i:nth-of-type(3),
+  .thanks-bg i:nth-of-type(4) {
+    opacity: 0;
+  }
 }
 
 
