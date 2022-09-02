@@ -786,7 +786,6 @@ a:hover {
   margin-bottom: -30px;
 }
 .graph p {
-  text-align: center;
   font-size: calc( 14 / var(--font-size_base));
   margin-bottom: 20px;
 }
@@ -794,6 +793,11 @@ a:hover {
   .graph-box {
     margin-right: -60px;
     margin-left: -60px;
+  }
+}
+@media (min-width: 961px) {
+  .graph p {
+    text-align: center;
   }
 }
 @media (max-width: 960px) {
