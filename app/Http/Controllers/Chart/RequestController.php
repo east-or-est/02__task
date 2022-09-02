@@ -39,6 +39,8 @@ class RequestController extends Controller
             ],
             'query' => [
                 'limit' => 30,
+                'status[nin]' => '6305fd083fa39c1e28ab13ff',
+                '_sys.raw.publishedAt[gt]' => 0
             ],
         ]);
         $results = json_decode($response -> getBody() -> getContents(), true);
@@ -58,6 +60,8 @@ class RequestController extends Controller
             ],
             'query' => [
                 'limit' => 30,
+                'status[nin]' => '6305fd083fa39c1e28ab13ff',
+                '_sys.raw.publishedAt[gt]' => 0
             ],
         ]);
         $results = json_decode($response -> getBody() -> getContents(), true);
