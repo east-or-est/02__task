@@ -39,7 +39,7 @@ class RequestController extends Controller
             ],
             'query' => [
                 'limit' => 30,
-                'status[nin]' => '6305fd083fa39c1e28ab13ff',
+                'status[nin]' => '6318696fd3ddb37e523b9703,6305fd083fa39c1e28ab13ff',
                 '_sys.raw.publishedAt[gt]' => 0
             ],
         ]);
@@ -60,7 +60,7 @@ class RequestController extends Controller
             ],
             'query' => [
                 'limit' => 30,
-                'status[nin]' => '6305fd083fa39c1e28ab13ff',
+                'status[nin]' => '6318696fd3ddb37e523b9703,6305fd083fa39c1e28ab13ff',
                 '_sys.raw.publishedAt[gt]' => 0
             ],
         ]);

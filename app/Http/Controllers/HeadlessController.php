@@ -41,7 +41,7 @@ class HeadlessController extends Controller
             'query' => [
                 'limit' => 30,
                 'order' => '-date',
-                '_sys.raw.publishedAt[gt]' => 0
+                '_sys.raw.publishedAt[gt]' => 0,
             ],
         ]);
         $results = json_decode($response -> getBody() -> getContents(), true);
