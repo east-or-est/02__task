@@ -60,3 +60,8 @@ jobs:
           protocol: ${{ secrets.FTP_PROTOCOL }}
           port: ${{ secrets.FTP_PORT }}
           server-dir: ${{ secrets.FTP_REMOTE_ROOT }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            README.md
+            newt.png
