@@ -26,9 +26,7 @@ jobs:
         env:
           MICROCMS_API_KEY: ${{ secrets.NEWT_API_KEY }}
           MICROCMS_SERVICE_ID: ${{ secrets.NEWT_SERVICE_DOMAIN }}
-        run: | 
-          composer install --prefer-dist --optimize-autoloader --no-dev --no-scripts
-          php artisan migrate --force
+        run: composer install --prefer-dist --optimize-autoloader --no-dev --no-scripts
   deploy-ftp:
     runs-on: ubuntu-latest
     needs: build
