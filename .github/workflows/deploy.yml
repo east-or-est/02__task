@@ -50,3 +50,4 @@ jobs:
             newt.png
             screenshot.png
             public/.htaccess
+            **/vendor/**
