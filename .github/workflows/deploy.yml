@@ -38,12 +38,6 @@ jobs:
           NEWT_API_KEY: ${{ secrets.NEWT_API_KEY }}
           NEWT_SERVICE_DOMAIN: ${{ secrets.NEWT_SERVICE_DOMAIN }}
         run: composer install
-        
-  deploy-ftp:
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - uses: actions/checkout@v3
       
       - name: Deploy FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
