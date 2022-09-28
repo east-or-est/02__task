@@ -694,6 +694,10 @@ a:hover {
   padding-bottom: 20px;
 }
 
+.task-desc a {
+  word-break: break-all;
+}
+
 .task-desc s {
   color: var(--color_gray);
 }
