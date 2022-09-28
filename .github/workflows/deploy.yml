@@ -28,7 +28,6 @@ jobs:
           MICROCMS_SERVICE_ID: ${{ secrets.NEWT_SERVICE_DOMAIN }}
         run: | 
           composer install --prefer-dist --optimize-autoloader --no-dev --no-scripts
-          php artisan key:generate
           php artisan migrate
   deploy-ftp:
     runs-on: ubuntu-latest
