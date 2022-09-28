@@ -1,1 +1,40 @@
+name: Deploy CI
 
+on:
+  push:
+    branches: [ main ]
+  repository_dispatch:
+    branches: [ master ]
+    types: [ update_post ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    strategy:
+      matrix:
+        php-versions: [8.1]
+      
+    steps:
+      - uses: actions/checkout@v3
+      - name: Use PHP ${{ matrix.php-versions }}
+        uses: shivammathur/setup-php@v3
+        with:
+          php-version: ${{ matrix.php-versions }}
+          extensions: mbstring
+      - run: composer install --no-scripts
+      - name: Build 
+        env:
+          MICROCMS_API_KEY: ${{ secrets.NEWT_API_KEY }}
+          MICROCMS_SERVICE_ID: ${{ secrets.NEWT_SERVICE_DOMAIN }}
+        run: composer install --prefer-dist --optimize-autoloader --no-dev --no-scripts
+      - name: Deploy FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.3.2
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ${{ secrets.FTP_PROTOCOL }}
+          port: ${{ secrets.FTP_PORT }}
+          server-dir: ${{ secrets.FTP_REMOTE_ROOT }}
+          local-dir: ./public/
