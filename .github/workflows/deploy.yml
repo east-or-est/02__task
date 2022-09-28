@@ -44,9 +44,6 @@ jobs:
         
       - name: Generate key
         run: php artisan key:generate
-      
-      - name: Run test
-        run: vendor/bin/phpunit
         
   deploy-ftp:
     runs-on: ubuntu-latest
