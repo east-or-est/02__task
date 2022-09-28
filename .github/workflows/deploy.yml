@@ -37,7 +37,7 @@ jobs:
         env:
           NEWT_API_KEY: ${{ secrets.NEWT_API_KEY }}
           NEWT_SERVICE_DOMAIN: ${{ secrets.NEWT_SERVICE_DOMAIN }}
-        run: composer install
+        run: composer install --prefer-dist --optimize-autoloader --no-dev --no-scripts
       
       - name: Deploy FTP
         uses: SamKirkland/FTP-Deploy-Action@4.3.2
@@ -48,6 +48,7 @@ jobs:
           protocol: ${{ secrets.FTP_PROTOCOL }}
           port: ${{ secrets.FTP_PORT }}
           server-dir: ${{ secrets.FTP_REMOTE_ROOT }}
+          timeout: 6000000
           exclude: |
             **/.git*
             **/.git*/**
