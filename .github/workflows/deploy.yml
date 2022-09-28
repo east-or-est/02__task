@@ -45,6 +45,11 @@ jobs:
       - name: Generate key
         run: php artisan key:generate
         
+      - name: Run test
+        run: |
+          php artisan migrate
+          vendor/bin/phpunit
+        
   deploy-ftp:
     runs-on: ubuntu-latest
     needs: build
