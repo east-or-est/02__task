@@ -4,6 +4,7 @@
   --color_font: #fff;
   --color_font-dark: #34312E;
   --color_main: #bf2424;
+  --color_gray: #888;
   --font-size_base: 16 * 1rem;
   --font_ja: 'Hiragino Kaku Gothic ProN', 'Hiragino Sans', Meiryo, sans-serif;
   --lineHeight_def: 1.8;
@@ -691,6 +692,15 @@ a:hover {
 .task-desc {
   margin-top: 20px;
   padding-bottom: 20px;
+}
+
+.task-desc s {
+  color: var(--color_gray);
+}
+
+.task-desc s a {
+  pointer-events: none;
+  color: inherit;
 }
 
 .task-schedule {
