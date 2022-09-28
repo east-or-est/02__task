@@ -35,10 +35,8 @@ jobs:
           NEWT_API_KEY: ${{ secrets.NEWT_API_KEY }}
           NEWT_SERVICE_DOMAIN: ${{ secrets.NEWT_SERVICE_DOMAIN }}
         run: composer install --prefer-dist --optimize-autoloader --no-dev --no-scripts
-        working-directory: ./app
       - name: Run Test
         run: vendor/bin/phpunit tests
-        working-directory: ./app
   deploy-ftp:
     runs-on: ubuntu-latest
     needs: build
