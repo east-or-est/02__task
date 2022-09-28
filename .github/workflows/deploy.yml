@@ -22,10 +22,18 @@ jobs:
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring
-      - name: Build 
+      - name: Cache
+        uses: actions/cache@v3
+        with:
+          path: vendor
+          key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-php-
+      - name: Build
+        if: steps.composer-cache.outputs.cache-hit != 'true'
         env:
-          MICROCMS_API_KEY: ${{ secrets.NEWT_API_KEY }}
-          MICROCMS_SERVICE_ID: ${{ secrets.NEWT_SERVICE_DOMAIN }}
+          NEWT_API_KEY: ${{ secrets.NEWT_API_KEY }}
+          NEWT_SERVICE_DOMAIN: ${{ secrets.NEWT_SERVICE_DOMAIN }}
         run: composer install --prefer-dist --optimize-autoloader --no-dev --no-scripts
   deploy-ftp:
     runs-on: ubuntu-latest
