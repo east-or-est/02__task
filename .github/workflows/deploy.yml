@@ -3,9 +3,6 @@ name: Deploy CI
 on:
   push:
     branches: [ main ]
-  repository_dispatch:
-    branches: [ master ]
-    types: [ update_post ]
 
 jobs:
   build:
@@ -34,9 +31,6 @@ jobs:
             
       - name: Install
         if: steps.composer-cache.outputs.cache-hit != 'true'
-        env:
-          NEWT_API_KEY: ${{ secrets.NEWT_API_KEY }}
-          NEWT_SERVICE_DOMAIN: ${{ secrets.NEWT_SERVICE_DOMAIN }}
         run: composer install --prefer-dist --optimize-autoloader --no-dev --no-scripts
       
       - name: Deploy FTP
@@ -55,3 +49,4 @@ jobs:
             README.md
             newt.png
             screenshot.png
+            public/.htaccess
