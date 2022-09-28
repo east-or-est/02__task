@@ -37,18 +37,13 @@ jobs:
         env:
           NEWT_API_KEY: ${{ secrets.NEWT_API_KEY }}
           NEWT_SERVICE_DOMAIN: ${{ secrets.NEWT_SERVICE_DOMAIN }}
-        run: composer install --prefer-dist --optimize-autoloader --no-dev --no-scripts
+        run: composer install
         
       - name: Copy environment
         run: cp .env.example .env
         
       - name: Generate key
         run: php artisan key:generate
-        
-      - name: Run test
-        run: |
-          php artisan migrate
-          vendor/bin/phpunit
         
   deploy-ftp:
     runs-on: ubuntu-latest
