@@ -649,7 +649,7 @@ a:hover {
 
 .task-title-wrap {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   margin-top: 5px;
 }
 .task-title {
