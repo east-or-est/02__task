@@ -1,1 +1,6 @@
-
+.git
+README.md
+newt.png
+screenshot.png
+/public/.htaccess
+/vendor/
