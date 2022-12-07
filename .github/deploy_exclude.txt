@@ -3,5 +3,6 @@
 README.md
 newt.png
 screenshot.png
-public/.htaccess
+.env.example
 **/vendor/**
+/public/.htaccess
