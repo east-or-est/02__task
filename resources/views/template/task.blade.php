@@ -1,4 +1,21 @@
-<article>
+<div>
+    <?php
+    $newDate = [];
+    /*
+    if(date_default_timezone_get() !== 'Asia/Tokyo'){
+        
+    }
+    */
+    ?>
+    @foreach ($results['items'] as $res)
+        <?php array_push($newDate, strtotime($res['_sys']['updatedAt'])) ?>
+    @endforeach
+    <?php
+    $newDate = date('Y/m/d H:i:s', max($newDate));
+    $newDate = new DateTime($newDate);
+    $newDate->setTimeZone( new DateTimeZone('Asia/Tokyo') );
+    ?>
+    <p>最終更新日：{{ $newDate->format('Y/m/d G時i分s秒') }}</p>
     @foreach ($results['items'] as $res)
         <section class="task">
             <header class="task-head">
@@ -84,4 +101,4 @@
             </footer>
         </section>
     @endforeach
-</article>
+</div>
