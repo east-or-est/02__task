@@ -13,7 +13,7 @@ class RequestController extends Controller
     public function type() {
         $client = new Client();
 
-        $type_response = $client->request( 'GET', config('services.newt.domain') . '/task-type', [
+        $response = $client->request( 'GET', config('services.newt.domain') . '/task-type', [
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Authorization' => config('services.newt.key')
@@ -22,9 +22,9 @@ class RequestController extends Controller
                 'order' => 'sort',
             ],
         ]);
-        $type_results = json_decode($type_response -> getBody() -> getContents(), true);
+        $results = json_decode($response -> getBody() -> getContents(), true);
 
-        return $type_results;
+        return $results;
     }
 
 

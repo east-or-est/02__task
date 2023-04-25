@@ -7,6 +7,10 @@
     }
     */
     ?>
+    <article>
+    <h1>
+        {{ isset($sel) ? $sel : '仕事タスク' }}
+    </h1>
     @foreach ($results['items'] as $res)
         <?php array_push($newDate, strtotime($res['_sys']['updatedAt'])) ?>
     @endforeach
@@ -15,7 +19,7 @@
     $newDate = new DateTime($newDate);
     $newDate->setTimeZone( new DateTimeZone('Asia/Tokyo') );
     ?>
-    <p>最終更新日：{{ $newDate->format('Y/m/d G時i分s秒') }}</p>
+    <p>【最終更新日】<br class="sp">{{ $newDate->format('Y/m/d G時i分s秒') }}</p>
     @foreach ($results['items'] as $res)
         <section class="task">
             <header class="task-head">
@@ -45,7 +49,7 @@
                     $date = new DateTime($res['date']);
                     $date->setTimeZone( new DateTimeZone('Asia/Tokyo') );
                     ?>
-                    <time class="task-date" datetime={{ $date->format('Y-m-d') }} data-text="公開日：">{{ $date->format('Y/m/d') }}</time>
+                    <time class="task-date" datetime={{ $date->format('Y-m-d') }} data-text="更新日：">{{ $date->format('Y/m/d') }}</time>
                 </div>
             </header>
             <div class="task-main">
@@ -102,3 +106,4 @@
         </section>
     @endforeach
 </div>
+</article>

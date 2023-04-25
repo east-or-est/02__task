@@ -8,41 +8,103 @@ use App\Http\Controllers\Controller;
 class ToFileController extends Controller
 {
 
-    public static function outlabeledPie($titleArr, $colorArr, $countArr, $filename) {
+    public static function graphBuild($titleArr, $colorArr, $countArr, $filename) {
 
         $chart = new \QuickChart([
-            'width' => 500,
-            'height' => 300
+            'width' => 700,
+            'height' => 400,
+            'version' => '2',
         ]);
 
         $chart->setConfig('{
-            type: "outlabeledPie",
+            type: "pie",
             data: {
                 labels: [ "' . implode( '","',$titleArr ) . '" ],
-                datasets: [{
-                    backgroundColor: [ "' . implode( '","',$colorArr ) . '" ],
-                    data: [' . implode( ",",$countArr ) . ']
-                }]
+                datasets: [
+                    {
+                        backgroundColor: [ "' . implode( '","',$colorArr ) . '" ],
+                        data: [' . implode( ",",$countArr ) . '],
+                        borderWidth: 2,
+                    },
+                ]
             },
             options: {
+                legend: {
+                    position: "right",
+                    labels: {
+                        fontSize: 20,
+                        fontFamily: "Hiragino Kaku Gothic ProN",
+                        fontColor: "black",
+                        padding: 20
+                    }
+                },
                 plugins: {
-                    legend: false,
-                    outlabels: {
-                        text: "%l %p",
-                        color: "white",
-                        stretch: 35,
+                    datalabels: {
+                        display: true,
                         font: {
-                            resizable: true,
-                            minSize: 12,
-                            maxSize: 18
-                        }
+                            style: "bold",
+                            size: 20,
+                            family: "Hiragino Kaku Gothic ProN",
+                        },
+                        color: "white"
                     }
                 }
             }
         }');
 
 
-        return $chart->toFile(base_path('public/asset/img/graph/chart-' . htmlspecialchars($filename, ENT_QUOTES | ENT_HTML5, 'UTF-8', false) . '.png'));
+
+        $chart_sp = new \QuickChart([
+            'width' => 800,
+            'height' => 450,
+            'version' => '2',
+        ]);
+
+        $chart_sp->setConfig('{
+            type: "pie",
+            data: {
+                labels: [ "' . implode( '","',$titleArr ) . '" ],
+                datasets: [
+                    {
+                        backgroundColor: [ "' . implode( '","',$colorArr ) . '" ],
+                        data: [' . implode( ",",$countArr ) . '],
+                        borderWidth: 2,
+                    },
+                ]
+            },
+            options: {
+                legend: {
+                    position: "bottom",
+                    labels: {
+                        fontSize: 30,
+                        fontFamily: "Hiragino Kaku Gothic ProN",
+                        fontColor: "black",
+                        padding: 20
+                    }
+                },
+                plugins: {
+                    datalabels: {
+                        display: true,
+                        font: {
+                            style: "bold",
+                            size: 30,
+                            family: "Hiragino Kaku Gothic ProN",
+                        },
+                        color: "white"
+                    }
+                }
+            }
+        }');
+
+
+
+        $build = [
+            $chart->toFile(base_path('public/asset/img/graph/chart-' . htmlspecialchars($filename, ENT_QUOTES | ENT_HTML5, 'UTF-8', false) . '.png')),
+            $chart_sp->toFile(base_path('public/asset/img/graph/chart-' . htmlspecialchars($filename, ENT_QUOTES | ENT_HTML5, 'UTF-8', false) . '-sp.png'))
+        ];
+
+
+        return $build;
     }
 
 }

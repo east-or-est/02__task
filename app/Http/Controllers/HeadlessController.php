@@ -78,6 +78,7 @@ class HeadlessController extends Controller
 
 
 
+    /*
     protected function graph_myself(Request $request) {
         $client = new Client();
 
@@ -101,6 +102,28 @@ class HeadlessController extends Controller
         $type_results = json_decode($type_response -> getBody() -> getContents(), true);
 
         return view('graph-myself', compact('results','type_results'));
+    }
+    */
+
+
+
+    public function challenge(Request $request) {
+        $client = new Client();
+
+        $response = $client->request( 'GET', config('services.newt.domain') . '/challenge', [
+            'headers' => [
+                'Content-Type' => 'application/json',
+                'Authorization' => config('services.newt.key')
+            ],
+            'query' => [
+                'limit' => 30,
+                'order' => '-date',
+                '_sys.raw.publishedAt[gt]' => 0
+            ],
+        ]);
+        $results = json_decode($response -> getBody() -> getContents(), true);
+
+        return view('challenge', compact('results'));
     }
 
 }
