@@ -51,7 +51,7 @@ class TaskController extends Controller
 
 
         // QuickChart実行
-        $toFile_results = ToFileController::outlabeledPie($dataTitle,$dataColor,$dataCount,$filename);
+        $toFile_results = ToFileController::graphBuild($dataTitle,$dataColor,$dataCount,$filename);
 
         return $toFile_results;
 

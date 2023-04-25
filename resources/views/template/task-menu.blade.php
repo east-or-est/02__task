@@ -6,11 +6,11 @@
         <li data-menu="個人タスク">
             <a href="{{ url('/myself/') }}">個人タスク</a>
         </li>
-        <li data-menu="仕事対応グラフ">
-            <a href="{{ url('/graph/') }}">仕事対応グラフ</a>
+        <li data-menu="対応グラフ">
+            <a href="{{ url('/graph/') }}">対応グラフ</a>
         </li>
-        <li data-menu="個人対応グラフ">
-            <a href="{{ url('/myself/graph/') }}">個人対応グラフ</a>
+        <li data-menu="目標">
+            <a href="{{ url('/challenge/') }}">目標</a>
         </li>
     </ul>
 </div>

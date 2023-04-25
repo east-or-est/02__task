@@ -20,7 +20,7 @@ Route::middleware(['throttle:graph'])->group( function() {
     Route::get('/graph', [HeadlessController::class, 'graph_work']);
 });
 
-Route::middleware(['throttle:graph'])->group( function() {
-    Route::get('/myself/graph', [HeadlessController::class, 'graph_myself']);
+Route::middleware(['throttle:challenge'])->group( function() {
+    Route::get('/challenge', [HeadlessController::class, 'challenge']);
 });
 
